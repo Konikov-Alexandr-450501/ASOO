@@ -15,6 +15,10 @@
     <!--//Custom Theme files-->
     <!--js-->
     {{ Html::script('js/template/jquery-1.11.1.min.js') }}
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script>
+        var socket = io(':6001')
+    </script>
     <!--//js-->
     <!--web-fonts-->
     <link href='//fonts.googleapis.com/css?family=Nova+Round' rel='stylesheet' type='text/css'>
