@@ -98,12 +98,12 @@
                 <li>
                     <h2>Saving your time</h2>
                     <p>Automated System of Orders<br>helps you order a sheet or a reference<br>and take away, which already have printed.</p>
-                    <a class="more hvr-bounce-to-right" href="#" data-toggle="modal" data-target="#myModal">Sign In</a>
+                    <a class="more hvr-bounce-to-right" href="{{ route('login') }}">Sign In</a>
                 </li>
                 <li>
                     <h3>Fully DB faculties</h3>
                     <p>The "ASOO" contains all faculties of the university.</p>
-                    <a class="more hvr-bounce-to-right" href="#" data-toggle="modal" data-target="#myModal">Sign In</a>
+                    <a class="more hvr-bounce-to-right" href="{{ route('login') }}">Sign In</a>
                 </li>
             </ul>
         </div>
@@ -111,49 +111,6 @@
     <!--//banner-text-->
 </div>
 <!--//banner-->
-<!--modal-sign-->
-<div class="modal bnr-modal fade" id="myModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <section>
-                <div class="modal-body modal-spa">
-                    <form action="#" method="post">
-                        <div class="form-left">
-                            <label>Name :</label>
-                            <input type="text" name="Your Name" placeholder="Enter Your Name" required="">
-                        </div>
-                        <div class="form-right">
-                            <label>Course :</label>
-                            <select id="country" onchange="change_country(this.value)" class="frm-field required">
-                                <option value="0">40 & 27-Mile Adults</option>
-                                <option value="1">40 & 27-Mile Child</option>
-                                <option value="2">8-Mile Family Ride</option>
-                                <option value="3">Century</option>
-                                <option value="4">Metric Century</option>
-                            </select>
-                        </div>
-                        <div class="form-left">
-                            <label>Date :</label>
-                            <input type="date" name="Date" >
-                        </div>
-                        <div class="form-right">
-                            <label>City :</label>
-                            <input type="text" name="City" placeholder="Enter Your City" required="">
-                        </div>
-                        <div class="clearfix"> </div>
-                        <label>Contact Info :</label>
-                        <input type="text" name="Address" placeholder="Enter Contact Details" required="">
-                        <input type="submit" value="Register Now">
-                    </form>
-                </div>
-            </section>
-        </div>
-    </div>
-</div>
-<!--//modal-sign-->
 <!--about-->
 <div id="about" class="about">
     <div class="container">
