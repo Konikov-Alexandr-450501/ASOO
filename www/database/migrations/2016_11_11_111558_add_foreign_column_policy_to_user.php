@@ -16,7 +16,7 @@ class AddForeignColumnPolicyToUser extends Migration
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('policy_id')->unsigned()->after('id');
+            $table->integer('policy_id')->unsigned()->after('id')->default(1);
             $table->foreign('policy_id')
                 ->references('id')->on('policies')
                 ->onDelete('cascade');
