@@ -14,8 +14,8 @@ class AddForeignsToOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->integer('type_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+            $table->integer('type_id')->unsigned()->after('status');
+            $table->integer('user_id')->unsigned()->after('status');
 
             $table->foreign('type_id')
                 ->references('id')->on('types')
