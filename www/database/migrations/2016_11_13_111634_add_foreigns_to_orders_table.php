@@ -40,7 +40,7 @@ class AddForeignsToOrdersTable extends Migration
         Schema::table('orders', function (Blueprint $table) {
             $table->dropForeign('orders_faculty_id_foreign');
             $table->dropForeign('orders_type_id_foreign');
-            $table->dropForeign('users_user_id_foreign');
+            $table->dropForeign('orders_user_id_foreign');
 
             $table->dropColumn(['faculty_id', 'type_id', 'user_id']);
         });
