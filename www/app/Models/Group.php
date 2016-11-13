@@ -4,6 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Group
+ *
+ * @mixin \Eloquent
+ * @property integer $id
+ * @property string $number
+ * @property integer $faculty_id
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Group whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Group whereNumber($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Group whereFacultyId($value)
+ */
 class Group extends Model
 {
     protected $table = 'groups';
@@ -14,6 +25,6 @@ class Group extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description'
+        'number', 'faculty_id'
     ];
 }

@@ -4,6 +4,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Order
+ *
+ * @property integer $id
+ * @property string $description
+ * @property string $body
+ * @property boolean $status
+ * @property integer $user_id
+ * @property integer $type_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \App\Models\User $owner
+ * @property-read \App\Models\Type $type
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereBody($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereStatus($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereTypeId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class Order extends Model
 {
     protected $table = 'orders';
