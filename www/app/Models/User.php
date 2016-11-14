@@ -104,4 +104,13 @@ class User extends Authenticatable
                 return false;
         }
     }
+
+    /**
+     * Returns user relation to orders.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orders() {
+        return $this->hasMany(Order::class);
+    }
 }
