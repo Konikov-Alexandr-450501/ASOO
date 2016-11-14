@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
 
     <!-- Scripts -->
     <script>
@@ -77,9 +78,15 @@
         </div>
     </nav>
 
-    @yield('content')
+    <div id="app">
+        @yield('content')
+    </div>
 
     <!-- Scripts -->
+
+    {{ Html::script('js/jquery.min.js') }}
+    <script src="/js/vue/vue.min.js"></script>
     <script src="/js/app.js"></script>
+    <script src="/js/vue/script.js"></script>
 </body>
 </html>

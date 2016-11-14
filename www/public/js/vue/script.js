@@ -1,13 +1,33 @@
-var vue = new Vue({
-    el: '#app',
+Vue.http.headers.common['X-CSRF-TOKEN'] = window.Laravel.csrfToken;
+
+Vue.component('orders', {
+    template: '#order-list',
 
     data: {
-        orders: []
+        list: [],
     },
 
-    methods: { },
+    data: function () {
+        return {
+            list: []
+        };
+    },
 
-    created: function() {
-        console.log(0);
-    }
+    created: function () {
+        this.getOrders();
+    },
+
+    methods: {
+        getOrders: function () {
+            this.$http.get('/orders').then((orders) => {
+                console.log(orders);
+                this.list = orders.data;
+                console.log(this.list);
+            });
+        },
+    },
+});
+
+new Vue({
+    el: 'body'
 });
