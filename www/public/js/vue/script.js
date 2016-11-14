@@ -1,6 +1,6 @@
 Vue.http.headers.common['X-CSRF-TOKEN'] = window.Laravel.csrfToken;
 
-Vue.component('orders', {
+Vue.component('orders-comp', {
     template: '#order-list',
 
     data: {
@@ -29,5 +29,5 @@ Vue.component('orders', {
 });
 
 new Vue({
-    el: 'body'
+    el: '#orders-panel'
 });
