@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Models\Type
+ * App\Models\Type.
  *
- * @property integer $id
+ * @property int $id
  * @property string $name
+ *
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Type whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Type whereName($value)
  * @mixin \Eloquent
@@ -23,6 +24,6 @@ class Type extends Model
      * @var array
      */
     protected $fillable = [
-        'name'
+        'name',
     ];
 }

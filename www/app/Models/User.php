@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 /**
- * App\Models\User
+ * App\Models\User.
  *
- * @property integer $id
- * @property integer $policy_id
+ * @property int $id
+ * @property int $policy_id
  * @property string $name
  * @property string $email
  * @property string $password
@@ -19,6 +19,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property-read \App\Models\Policy $policy
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $unreadNotifications
+ *
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User wherePolicyId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereName($value)
@@ -66,39 +67,44 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function policy() {
+    public function policy()
+    {
         return $this->belongsTo(Policy::class);
     }
 
     /**
-     * Check if a user is Student
+     * Check if a user is Student.
      *
      * @return bool
      */
-    public function isStudent() {
+    public function isStudent()
+    {
         return $this->policy->id == self::STUDENT;
     }
 
     /**
-     * Check if a user is Faculty Manager
+     * Check if a user is Faculty Manager.
      *
      * @return bool
      */
-    public function isFacultyManager() {
+    public function isFacultyManager()
+    {
         return $this->policy->id == self::FACULTY_MANAGER;
     }
 
     /**
-     * Check user role
+     * Check user role.
      *
      * @param string $role
+     *
      * @return bool
      */
-    public function isRole($role = 'student') {
-        switch($role) {
-            case "student":
+    public function isRole($role = 'student')
+    {
+        switch ($role) {
+            case 'student':
                 return $this->isStudent();
-            case "manager":
+            case 'manager':
                 return $this->isFacultyManager();
             default:
                 return false;
@@ -110,7 +116,8 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function orders() {
+    public function orders()
+    {
         return $this->hasMany(Order::class);
     }
 }
