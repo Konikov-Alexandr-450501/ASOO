@@ -5,18 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Models\Order
+ * App\Models\Order.
  *
- * @property integer $id
+ * @property int $id
  * @property string $description
  * @property string $body
- * @property boolean $status
- * @property integer $user_id
- * @property integer $type_id
+ * @property bool $status
+ * @property int $user_id
+ * @property int $type_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property-read \App\Models\User $owner
  * @property-read \App\Models\Type $type
+ *
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Order whereBody($value)
@@ -37,7 +38,7 @@ class Order extends Model
      * @var array
      */
     protected $fillable = [
-        'description', 'body', 'status', 'type_id', 'user_id'
+        'description', 'body', 'status', 'type_id', 'user_id',
     ];
 
     /**
@@ -45,7 +46,8 @@ class Order extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function owner(){
+    public function owner()
+    {
         return $this->hasOne(User::class);
     }
 
@@ -54,7 +56,8 @@ class Order extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function type(){
+    public function type()
+    {
         return $this->hasOne(Type::class);
     }
 }

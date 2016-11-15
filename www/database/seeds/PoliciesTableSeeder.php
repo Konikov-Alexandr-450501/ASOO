@@ -12,10 +12,10 @@ class PoliciesTableSeeder extends Seeder
     public function run()
     {
         DB::table('policies')->insert([
-            'name' => 'Student'
+            'name' => 'Student',
         ]);
         DB::table('policies')->insert([
-            'name' => 'Faculty Manager'
+            'name' => 'Faculty Manager',
         ]);
     }
 }

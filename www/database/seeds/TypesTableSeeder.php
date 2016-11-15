@@ -12,10 +12,10 @@ class TypesTableSeeder extends Seeder
     public function run()
     {
         DB::table('types')->insert([
-            'name' => 'Sheet'
+            'name' => 'Sheet',
         ]);
         DB::table('types')->insert([
-            'name' => 'Reference'
+            'name' => 'Reference',
         ]);
     }
 }
