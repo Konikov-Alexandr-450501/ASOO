@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class OrdersController extends Controller
 {
