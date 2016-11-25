@@ -13,8 +13,10 @@ require('./bootstrap');
  * the application, or feel free to tweak this setup for your needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
+Vue.http.headers.common['X-CSRF-TOKEN'] = window.Laravel.csrfToken;
+
+require('./components/orders');
 
 const app = new Vue({
-    el: 'body'
+    el: '#orders-panel'
 });

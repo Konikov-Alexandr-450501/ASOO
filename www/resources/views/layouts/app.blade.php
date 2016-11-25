@@ -83,10 +83,6 @@
     </div>
 
     <!-- Scripts -->
-
-    {{ Html::script('js/jquery.min.js') }}
-    <script src="/js/vue/vue.min.js"></script>
     <script src="/js/app.js"></script>
-    <script src="/js/vue/script.js"></script>
 </body>
 </html>

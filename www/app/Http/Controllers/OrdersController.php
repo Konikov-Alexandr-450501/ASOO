@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class OrdersController extends Controller
 {
@@ -84,7 +86,7 @@ class OrdersController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the order from storage.
      *
      * @param int $id
      *
@@ -92,6 +94,23 @@ class OrdersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $order = Order::findOrFail($id);
+            $order->delete();
+        } catch (ModelNotFoundException $ex) {
+            return Response::json([
+                'success'  => false,
+                'messages' => [
+                    'Order was not found',
+                ],
+            ], 400);
+        }
+
+        return Response::json([
+            'success'  => true,
+            'messages' => [
+                'Order successfully deleted',
+            ],
+        ], 200);
     }
 }
