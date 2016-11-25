@@ -13,16 +13,7 @@
                             <a href="" class="btn btn-default">New Order</a>
                         </div>
                     </div>
-                    <div class="col-md-12" style="margin-top: 15px;">
-                        <div class="row">
-                            <div class="panel panel-default" id="orders-panel">
-                                @include('partials.orders.index')
-                            </div>
-                        </div>
-                        <div class="row" style="text-align: center">
-                            <button class="btn btn-default"style="display: inline-block">Show More</button>
-                        </div>
-                    </div>
+                    @include('partials.orders.index')
                 </div>
             </div>
         </div>

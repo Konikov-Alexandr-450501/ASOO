@@ -41426,7 +41426,7 @@ Vue.http.headers.common['X-CSRF-TOKEN'] = window.Laravel.csrfToken;
 require('./components/orders');
 
 var app = new Vue({
-  el: '#orders-panel'
+  el: 'body'
 });
 
 },{"./bootstrap":8,"./components/orders":9}],8:[function(require,module,exports){
@@ -41488,7 +41488,9 @@ Vue.component('orders-comp', (_Vue$component = {
     template: '#order-list',
 
     data: {
-        list: []
+        list: [],
+        count: 0,
+        step: 5
     }
 
 }, _defineProperty(_Vue$component, 'data', function data() {
@@ -41498,6 +41500,16 @@ Vue.component('orders-comp', (_Vue$component = {
 }), _defineProperty(_Vue$component, 'created', function created() {
     this.getOrders();
 }), _defineProperty(_Vue$component, 'methods', {
+
+    /**
+     * Set count of retrieved data.
+     *
+     * @param count
+     */
+    setCount: function setCount(count) {
+        this.count = count;
+    },
+
     /**
      * Get orders from storage.
      */
@@ -41505,12 +41517,18 @@ Vue.component('orders-comp', (_Vue$component = {
         var _this = this;
 
         this.$http.get('/orders').then(function (orders) {
-            console.log(orders);
+            // console.log(orders);
             _this.list = orders.data;
-            console.log(_this.list);
+            //console.log(this.list);
+            _this.setCount(_this.list.length);
         });
     },
 
+    /**
+     * Delete order from storage.
+     *
+     * @param order
+     */
     deleteOrder: function deleteOrder(order) {
         var _this2 = this;
 
@@ -41527,6 +41545,20 @@ Vue.component('orders-comp', (_Vue$component = {
             var response = JSON.parse(data.body);
             console.log(response);
             alert(response.messages[0]);
+        });
+    },
+
+    /**
+     * Show more orders by step = 5.
+     */
+    showMore: function showMore() {
+        var _this3 = this;
+
+        this.$http.get('/orders', this.count + this.step).then(function (orders) {
+            console.log(orders);
+            _this3.list = orders.data;
+            console.log(_this3.list);
+            _this3.setCount(_this3.list.length);
         });
     }
 

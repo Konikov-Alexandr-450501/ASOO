@@ -11,15 +11,28 @@ use Illuminate\Support\Facades\Response;
 class OrdersController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Variable to limit orders to display.
      */
-    public function index()
+    const LIMIT_ORDERS_TO_DISPLAY = 5;
+
+    /**
+     * Display a listing of the orders.
+     *
+     * @param null $count
+     * @return mixed
+     */
+    public function index($count = null)
     {
         if (!Auth::guest()) {
+
+            if($count != null) {
+                return Response::json(
+                    Auth::user()->orders()->limit($count)->get(), 200
+                );
+            }
+
             return Response::json(
-                Auth::user()->orders()->get(), 200
+                Auth::user()->orders()->limit(self::LIMIT_ORDERS_TO_DISPLAY)->get(), 200
             );
         }
 

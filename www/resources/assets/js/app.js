@@ -18,5 +18,5 @@ Vue.http.headers.common['X-CSRF-TOKEN'] = window.Laravel.csrfToken;
 require('./components/orders');
 
 const app = new Vue({
-    el: '#orders-panel'
+    el: 'body'
 });

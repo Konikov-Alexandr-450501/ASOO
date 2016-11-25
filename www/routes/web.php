@@ -20,5 +20,8 @@ Auth::routes();
 Route::get('/account', 'AccountController@index');
 
 Route::resource('orders', 'OrdersController', [
-    'index', 'destroy',
+    'destroy',
 ]);
+
+Route::get('/orders/{?count}', 'OrdersController@index');
+
