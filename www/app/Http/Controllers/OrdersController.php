@@ -19,13 +19,13 @@ class OrdersController extends Controller
      * Display a listing of the orders.
      *
      * @param null $count
+     *
      * @return mixed
      */
     public function index($count = null)
     {
         if (!Auth::guest()) {
-
-            if($count != null) {
+            if ($count != null) {
                 return Response::json(
                     Auth::user()->orders()->limit($count)->get(), 200
                 );

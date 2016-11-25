@@ -24,4 +24,3 @@ Route::resource('orders', 'OrdersController', [
 ]);
 
 Route::get('/orders/{?count}', 'OrdersController@index');
-
