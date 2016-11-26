@@ -30,6 +30,7 @@ $factory->define(App\Models\Order::class, function (Faker\Generator $faker) {
         'body'        => $faker->realText(200),
         'status'      => $faker->numberBetween(0, 1),
         'user_id'     => 21,
+        'kind_id'     => $faker->numberBetween(1, 3),
         'type_id'     => $faker->numberBetween(1, 2),
     ];
 });

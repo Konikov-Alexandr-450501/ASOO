@@ -14,11 +14,11 @@ class AddForeignsToOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->integer('type_id')->unsigned()->after('status');
+            $table->integer('kind_id')->unsigned()->after('status');
             $table->integer('user_id')->unsigned()->after('status');
 
-            $table->foreign('type_id')
-                ->references('id')->on('types')
+            $table->foreign('kind_id')
+                ->references('id')->on('kinds')
                 ->onDelete('cascade');
             $table->foreign('user_id')
                 ->references('id')->on('users')
@@ -34,10 +34,10 @@ class AddForeignsToOrdersTable extends Migration
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropForeign('orders_type_id_foreign');
+            $table->dropForeign('orders_kind_id_foreign');
             $table->dropForeign('orders_user_id_foreign');
 
-            $table->dropColumn(['type_id', 'user_id']);
+            $table->dropColumn(['kind_id', 'user_id']);
         });
     }
 }

@@ -17,5 +17,6 @@ class TypesTableSeeder extends Seeder
         DB::table('types')->insert([
             'name' => 'Reference',
         ]);
+
     }
 }

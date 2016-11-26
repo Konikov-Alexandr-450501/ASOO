@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Kind;
+use App\Models\Type;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,7 +47,13 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        return view('account.student.orders.create');
+        $order_kinds = Kind::all();
+        $order_types = Type::all();
+
+        return view('account.student.orders.create')
+                ->with(compact([
+                    'order_kinds', 'order_types',
+                ]));
     }
 
     /**

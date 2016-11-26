@@ -60,4 +60,14 @@ class Order extends Model
     {
         return $this->hasOne(Type::class);
     }
+
+    /**
+     * Returns the kind of Order.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function kind()
+    {
+        return $this->hasOne(Kind::class);
+    }
 }
