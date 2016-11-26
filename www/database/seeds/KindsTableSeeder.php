@@ -12,19 +12,10 @@ class KindsTableSeeder extends Seeder
     public function run()
     {
         DB::table('kinds')->insert([
-            'name' => 'Ordinary',
+            'name' => 'Sheet',
         ]);
         DB::table('kinds')->insert([
-            'name' => 'With the official stamp',
-        ]);
-        DB::table('kinds')->insert([
-            'name' => 'Exam',
-        ]);
-        DB::table('kinds')->insert([
-            'name' => 'Credit',
-        ]);
-        DB::table('kinds')->insert([
-            'name' => 'Course work',
+            'name' => 'Reference',
         ]);
     }
 }

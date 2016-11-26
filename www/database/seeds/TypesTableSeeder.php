@@ -12,11 +12,19 @@ class TypesTableSeeder extends Seeder
     public function run()
     {
         DB::table('types')->insert([
-            'name' => 'Sheet',
+            'name' => 'Ordinary',
         ]);
         DB::table('types')->insert([
-            'name' => 'Reference',
+            'name' => 'With the official stamp',
         ]);
-
+        DB::table('types')->insert([
+            'name' => 'Exam',
+        ]);
+        DB::table('types')->insert([
+            'name' => 'Credit',
+        ]);
+        DB::table('types')->insert([
+            'name' => 'Course work',
+        ]);
     }
 }
