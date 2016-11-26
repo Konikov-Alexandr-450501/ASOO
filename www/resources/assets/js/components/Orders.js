@@ -3,7 +3,12 @@ Vue.component('orders-comp', {
 
     data: {
         list: [],
-        count: 0
+        count: 0,
+        currentRoute: '',
+        newOrder: {
+            name: '',
+            reference: ''
+        }
     },
 
     data: function () {
@@ -13,10 +18,23 @@ Vue.component('orders-comp', {
     },
 
     created: function () {
-        this.getOrders();
+        this.currentRoute = window.location.pathname;
+
+        if(!this.isCreatePage()) {
+            this.getOrders();
+        }
     },
 
     methods: {
+
+        /**
+         * Check if the current page is to create an order.
+         *
+         * @returns {boolean}
+         */
+        isCreatePage: function() {
+            return ("/account/orders/create" === this.currentRoute);
+        },
 
         /**
          * Set count of retrieved data.

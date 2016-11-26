@@ -39,13 +39,13 @@ class OrdersController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new order.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('account.student.orders.create');
     }
 
     /**

@@ -41489,7 +41489,12 @@ Vue.component('orders-comp', (_Vue$component = {
 
     data: {
         list: [],
-        count: 0
+        count: 0,
+        currentRoute: window.location.pathname,
+        newOrder: {
+            name: '',
+            reference: ''
+        }
     }
 
 }, _defineProperty(_Vue$component, 'data', function data() {
@@ -41497,8 +41502,17 @@ Vue.component('orders-comp', (_Vue$component = {
         list: []
     };
 }), _defineProperty(_Vue$component, 'created', function created() {
-    this.getOrders();
+    this.currentRoute = window.location.pathname;
+
+    if (!this.isCreatePage()) {
+        console.log("Not create page");
+        this.getOrders();
+    }
 }), _defineProperty(_Vue$component, 'methods', {
+
+    isCreatePage: function isCreatePage() {
+        return "/account/orders/create" === this.currentRoute;
+    },
 
     /**
      * Set count of retrieved data.
