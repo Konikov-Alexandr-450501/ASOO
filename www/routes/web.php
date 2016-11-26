@@ -17,11 +17,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/account', 'AccountController@index');
-
 Route::get('/orders/{count?}', 'OrdersController@index');
 
-Route::resource('orders', 'OrdersController', [
-    'destroy',
-]);
+Route::group(['prefix' => 'account'], function () {
 
+    Route::get('/', 'AccountController@index');
+
+    Route::resource('orders', 'OrdersController', [
+        'destroy', 'create'
+    ]);
+});

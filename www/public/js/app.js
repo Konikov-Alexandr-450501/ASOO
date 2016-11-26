@@ -41529,7 +41529,7 @@ Vue.component('orders-comp', (_Vue$component = {
     deleteOrder: function deleteOrder(order) {
         var _this2 = this;
 
-        this.$http.delete('orders/' + order.id).then(function (data) {
+        this.$http.delete('account/orders/' + order.id).then(function (data) {
             // success callback
             var response = JSON.parse(data.body);
             console.log(response);

@@ -43,7 +43,7 @@ Vue.component('orders-comp', {
          * @param order
          */
         deleteOrder: function (order) {
-            this.$http.delete('orders/' + order.id)
+            this.$http.delete('account/orders/' + order.id)
                 .then((data) => {
                     // success callback
                     var response = JSON.parse(data.body);
