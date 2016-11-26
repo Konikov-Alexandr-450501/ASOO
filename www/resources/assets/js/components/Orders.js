@@ -3,8 +3,7 @@ Vue.component('orders-comp', {
 
     data: {
         list: [],
-        count: 0,
-        step: 5,
+        count: 0
     },
 
     data: function () {
@@ -33,9 +32,7 @@ Vue.component('orders-comp', {
          */
         getOrders: function () {
             this.$http.get('/orders').then((orders) => {
-               // console.log(orders);
                 this.list = orders.data;
-                //console.log(this.list);
                 this.setCount(this.list.length);
             });
         },
@@ -67,10 +64,11 @@ Vue.component('orders-comp', {
          * Show more orders by step = 5.
          */
         showMore: function () {
-            this.$http.get('/orders', (this.count + this.step)).then((orders) => {
-                console.log(orders);
+            var step = 5;
+            var count = this.count + step;
+
+            this.$http.get('/orders/' + count).then((orders) => {
                 this.list = orders.data;
-                console.log(this.list);
                 this.setCount(this.list.length);
             });
         },

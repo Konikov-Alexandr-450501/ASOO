@@ -41489,8 +41489,7 @@ Vue.component('orders-comp', (_Vue$component = {
 
     data: {
         list: [],
-        count: 0,
-        step: 5
+        count: 0
     }
 
 }, _defineProperty(_Vue$component, 'data', function data() {
@@ -41517,9 +41516,7 @@ Vue.component('orders-comp', (_Vue$component = {
         var _this = this;
 
         this.$http.get('/orders').then(function (orders) {
-            // console.log(orders);
             _this.list = orders.data;
-            //console.log(this.list);
             _this.setCount(_this.list.length);
         });
     },
@@ -41554,10 +41551,11 @@ Vue.component('orders-comp', (_Vue$component = {
     showMore: function showMore() {
         var _this3 = this;
 
-        this.$http.get('/orders', this.count + this.step).then(function (orders) {
-            console.log(orders);
+        var step = 5;
+        var count = this.count + step;
+
+        this.$http.get('/orders/' + count).then(function (orders) {
             _this3.list = orders.data;
-            console.log(_this3.list);
             _this3.setCount(_this3.list.length);
         });
     }

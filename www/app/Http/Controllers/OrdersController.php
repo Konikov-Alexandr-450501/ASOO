@@ -18,11 +18,10 @@ class OrdersController extends Controller
     /**
      * Display a listing of the orders.
      *
+     * @param Request $request
      * @param null $count
-     *
-     * @return mixed
      */
-    public function index($count = null)
+    public function index(Request $request, $count = null)
     {
         if (!Auth::guest()) {
             if ($count != null) {
