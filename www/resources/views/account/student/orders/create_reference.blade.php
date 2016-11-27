@@ -42,5 +42,11 @@
                 </div>
             </div>
         </div>
+        <div class="checkbox">
+            <label><input type="checkbox" v-model="checkbox_rules">I am aware of the internal rules.</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" v-model="checkbox_correct_data">I confirm that these data are correct.</label>
+        </div>
     </div>
 </div>

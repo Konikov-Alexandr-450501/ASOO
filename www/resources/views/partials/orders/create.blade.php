@@ -39,7 +39,7 @@
                     </div>
                     @include('account.student.orders.create_reference')
                     <div class="form-group">
-                        <button type="submit" class="btn btn-default">Send</button>
+                        <button type="submit" v-bind:class="sendObject" class="btn btn-default">Send</button>
                     </div>
                 </form>
             </div>

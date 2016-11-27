@@ -41502,9 +41502,19 @@ Vue.component('orders-comp', {
             count: 0,
             haventPlace: false,
             haventReason: false,
+            checkbox_rules: false,
+            checkbox_correct_data: false,
             currentRoute: '',
             newOrder: newOrderData
         };
+    },
+
+    computed: {
+        sendObject: function sendObject() {
+            return {
+                disabled: this.canDesable()
+            };
+        }
     },
 
     created: function created() {
@@ -41517,23 +41527,29 @@ Vue.component('orders-comp', {
 
     methods: {
 
+        canDesable: function canDesable() {
+            return (!this.checkbox_rules || !this.checkbox_correct_data) && !this.isSheet();
+        },
+
         /**
          * Create a new Order and save it to the Database.
          */
         createOrder: function createOrder() {
             var _this = this;
 
-            this.$http.post('/account/orders', this.newReference).then(function (data) {
-                // success callback
-                _this.newReference = newOrderData;
+            if (this.isSheet() || !this.canDesable()) {
+                this.$http.post('/account/orders', this.newReference).then(function (data) {
+                    // success callback
+                    _this.newReference = newOrderData;
 
-                var response = JSON.parse(data.body);
-                console.log(response);
-            }, function (data) {
-                // error callback
-                var response = JSON.parse(data.body);
-                console.log(response);
-            });
+                    var response = JSON.parse(data.body);
+                    console.log(response);
+                }, function (data) {
+                    // error callback
+                    var response = JSON.parse(data.body);
+                    console.log(response);
+                });
+            }
         },
 
         /**
