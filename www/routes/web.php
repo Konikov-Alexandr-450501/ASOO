@@ -24,6 +24,6 @@ Route::group(['prefix' => 'account', 'middleware' => ['auth']], function () {
     Route::get('/', 'AccountController@index');
 
     Route::resource('orders', 'OrdersController', [
-        'destroy', 'create'
+        'destroy', 'create', 'store',
     ]);
 });
