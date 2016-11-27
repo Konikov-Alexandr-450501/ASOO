@@ -32,7 +32,7 @@
                             <option value="505">etc</option>
                     </select>
                     <br>
-                    <textarea class="form-control" placeholder="Enter the text" v-if="haventPlace" v-model="place_text" name="order_to_place" id="" cols="30" rows="10"></textarea>
+                    <textarea class="form-control" placeholder="Enter the text" v-if="haventPlace" v-model="newOrder.place_text" name="order_to_place" id="" cols="30" rows="10"></textarea>
                 </div>
             </div>
 
