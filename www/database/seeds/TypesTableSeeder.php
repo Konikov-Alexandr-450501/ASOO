@@ -13,18 +13,23 @@ class TypesTableSeeder extends Seeder
     {
         DB::table('types')->insert([
             'name' => 'Ordinary',
+            'kind_id' => 1,
         ]);
         DB::table('types')->insert([
             'name' => 'With the official stamp',
+            'kind_id' => 1,
         ]);
         DB::table('types')->insert([
             'name' => 'Exam',
+            'kind_id' => 2,
         ]);
         DB::table('types')->insert([
             'name' => 'Credit',
+            'kind_id' => 2,
         ]);
         DB::table('types')->insert([
             'name' => 'Course work',
+            'kind_id' => 2,
         ]);
     }
 }
