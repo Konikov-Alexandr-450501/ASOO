@@ -37,6 +37,8 @@ Vue.http.interceptors.push((request, next) => {
  * allows your team to easily build robust real-time web applications.
  */
 
+Vue.config.warnExpressionErrors = false;
+
 // import Echo from "laravel-echo"
 
 // window.Echo = new Echo({

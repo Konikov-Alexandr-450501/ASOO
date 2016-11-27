@@ -14,6 +14,36 @@ class Type extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
+        'name', 'kind_id'
     ];
+
+    /**
+     * Returns the kind of a Type.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function kind()
+    {
+        return $this->belongsTo(Kind::class);
+    }
+
+    /**
+     * Checks if the current Type is belong to kind of reference.
+     *
+     * @return bool
+     */
+    public function isForReference()
+    {
+        return $this->kind_id == 2;
+    }
+
+    /**
+     * Checks if the current Type is belong to kind of sheet.
+     *
+     * @return bool
+     */
+    public function isForSheet()
+    {
+        return $this->kind_id == 1;
+    }
 }

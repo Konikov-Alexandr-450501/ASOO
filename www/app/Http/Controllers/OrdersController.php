@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Kind;
 use App\Models\Type;
+use App\Models\Place;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,12 +48,20 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        $order_kinds = Kind::all();
-        $order_types = Type::all();
+        $kinds = Kind::all();
+        $places = Place::all();
+        $types = Type::all();
+
+        $sheet_types = $types->filter(function ($type) {
+            return $type->isForSheet();
+        });
+        $reference_types = $types->filter(function ($type) {
+            return $type->isForReference();
+        });
 
         return view('account.student.orders.create')
                 ->with(compact([
-                    'order_kinds', 'order_types',
+                    'kinds', 'sheet_types', 'reference_types', 'places',
                 ]));
     }
 

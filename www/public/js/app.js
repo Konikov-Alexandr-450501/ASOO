@@ -41470,6 +41470,8 @@ Vue.http.interceptors.push(function (request, next) {
  * allows your team to easily build robust real-time web applications.
  */
 
+Vue.config.warnExpressionErrors = false;
+
 // import Echo from "laravel-echo"
 
 // window.Echo = new Echo({
@@ -41480,101 +41482,118 @@ Vue.http.interceptors.push(function (request, next) {
 },{"bootstrap-sass":1,"jquery":2,"lodash":3,"vue":6,"vue-resource":5}],9:[function(require,module,exports){
 'use strict';
 
-var _Vue$component;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-Vue.component('orders-comp', (_Vue$component = {
+Vue.component('orders-comp', {
     template: '#order-list',
 
-    data: {
-        list: [],
-        count: 0,
-        currentRoute: window.location.pathname,
-        newOrder: {
-            name: '',
-            reference: ''
-        }
-    }
-
-}, _defineProperty(_Vue$component, 'data', function data() {
-    return {
-        list: []
-    };
-}), _defineProperty(_Vue$component, 'created', function created() {
-    this.currentRoute = window.location.pathname;
-
-    if (!this.isCreatePage()) {
-        console.log("Not create page");
-        this.getOrders();
-    }
-}), _defineProperty(_Vue$component, 'methods', {
-
-    isCreatePage: function isCreatePage() {
-        return "/account/orders/create" === this.currentRoute;
-    },
-
-    /**
-     * Set count of retrieved data.
-     *
-     * @param count
-     */
-    setCount: function setCount(count) {
-        this.count = count;
-    },
-
-    /**
-     * Get orders from storage.
-     */
-    getOrders: function getOrders() {
-        var _this = this;
-
-        this.$http.get('/orders').then(function (orders) {
-            _this.list = orders.data;
-            _this.setCount(_this.list.length);
-        });
-    },
-
-    /**
-     * Delete order from storage.
-     *
-     * @param order
-     */
-    deleteOrder: function deleteOrder(order) {
-        var _this2 = this;
-
-        this.$http.delete('account/orders/' + order.id).then(function (data) {
-            // success callback
-            var response = JSON.parse(data.body);
-            console.log(response);
-            if (response.success) {
-                _this2.list.$remove(order);
-                alert(response.messages[0]);
+    data: function data() {
+        return {
+            list: [],
+            count: 0,
+            haventPlace: false,
+            currentRoute: '',
+            newOrder: {
+                kind: 1,
+                type: 1,
+                place_id: 1,
+                place_text: ''
             }
-        }, function (data) {
-            // error callback
-            var response = JSON.parse(data.body);
-            console.log(response);
-            alert(response.messages[0]);
-        });
+        };
     },
 
-    /**
-     * Show more orders by step = 5.
-     */
-    showMore: function showMore() {
-        var _this3 = this;
+    created: function created() {
+        this.currentRoute = window.location.pathname;
 
-        var step = 5;
-        var count = this.count + step;
+        if (!this.isCreatePage()) {
+            this.getOrders();
+        }
+    },
 
-        this.$http.get('/orders/' + count).then(function (orders) {
-            _this3.list = orders.data;
-            _this3.setCount(_this3.list.length);
-        });
+    methods: {
+
+        changePlaceStatus: function changePlaceStatus() {
+            this.haventPlace = this.newOrder.place_id == 505 ? true : false;
+        },
+
+        /**
+         * Chech if the order kind is for sheet.
+         *
+         * @returns {boolean}
+         */
+        isSheet: function isSheet() {
+            return this.newOrder.kind == 1;
+        },
+
+        /**
+         * Check if the current page is to create an order.
+         *
+         * @returns {boolean}
+         */
+        isCreatePage: function isCreatePage() {
+            return "/account/orders/create" === this.currentRoute;
+        },
+
+        /**
+         * Set count of retrieved data.
+         *
+         * @param count
+         */
+        setCount: function setCount(count) {
+            this.count = count;
+        },
+
+        /**
+         * Get orders from storage.
+         */
+        getOrders: function getOrders() {
+            var _this = this;
+
+            this.$http.get('/orders').then(function (orders) {
+                _this.list = orders.data;
+                _this.setCount(_this.list.length);
+            });
+        },
+
+        /**
+         * Delete order from storage.
+         *
+         * @param order
+         */
+        deleteOrder: function deleteOrder(order) {
+            var _this2 = this;
+
+            this.$http.delete('account/orders/' + order.id).then(function (data) {
+                // success callback
+                var response = JSON.parse(data.body);
+                console.log(response);
+                if (response.success) {
+                    _this2.list.$remove(order);
+                    alert(response.messages[0]);
+                }
+            }, function (data) {
+                // error callback
+                var response = JSON.parse(data.body);
+                console.log(response);
+                alert(response.messages[0]);
+            });
+        },
+
+        /**
+         * Show more orders by step = 5.
+         */
+        showMore: function showMore() {
+            var _this3 = this;
+
+            var step = 5;
+            var count = this.count + step;
+
+            this.$http.get('/orders/' + count).then(function (orders) {
+                _this3.list = orders.data;
+                _this3.setCount(_this3.list.length);
+            });
+        }
+
     }
-
-}), _Vue$component));
+});
 
 },{}]},{},[7]);
 

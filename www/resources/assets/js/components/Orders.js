@@ -1,20 +1,19 @@
 Vue.component('orders-comp', {
     template: '#order-list',
 
-    data: {
-        list: [],
-        count: 0,
-        currentRoute: '',
-        newOrder: {
-            name: '',
-            reference: ''
-        }
-    },
-
     data: function () {
         return {
             list: [],
-        };
+            count: 0,
+            haventPlace: false,
+            currentRoute: '',
+            newOrder: {
+                kind: 1,
+                type: 1,
+                place_id: 1,
+                place_text: '',
+            }
+        }
     },
 
     created: function () {
@@ -26,6 +25,23 @@ Vue.component('orders-comp', {
     },
 
     methods: {
+
+        /**
+         * Change haven't place status.
+         */
+        changePlaceStatus: function() {
+            this.haventPlace =
+                (this.newOrder.place_id == 505) ? true : false;
+        },
+
+        /**
+         * Chech if the order kind is for sheet.
+         *
+         * @returns {boolean}
+         */
+        isSheet: function () {
+            return (this.newOrder.kind == 1);
+        },
 
         /**
          * Check if the current page is to create an order.
