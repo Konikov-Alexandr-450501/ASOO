@@ -24,7 +24,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" v-if="isSheet()">
                         <label for="order_to_place">Where: </label>
                         <select class="form-control" @change="changePlaceStatus()" v-model="newOrder.place_id" name="order_to_place">
                         @foreach($places as $place)
@@ -32,9 +32,12 @@
                         @endforeach
                             <option value="505">etc</option>
                         </select>
-                        <br>
-                        <textarea class="form-control" placeholder="Enter the text" v-if="haventPlace" v-model="newOrder.place_text" name="order_to_place" id="" cols="30" rows="10"></textarea>
+                        <div class="form-group" v-if="haventPlace">
+                            <br>
+                            <textarea class="form-control" placeholder="Enter the text" v-model="newOrder.place_text" name="order_to_place_text" cols="30" rows="10"></textarea>
+                        </div>
                     </div>
+                    @include('account.student.orders.create_reference')
                     <div class="form-group">
                         <button type="submit" class="btn btn-default">Send</button>
                     </div>

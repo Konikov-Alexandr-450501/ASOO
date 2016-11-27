@@ -3,6 +3,10 @@ var newOrderData = {
     type: 1,
     place_id: 1,
     place_text: '',
+    teacher_id: 1,
+    reason_id: 1,
+    reason_text: '',
+    justifiable: false
 };
 
 Vue.component('orders-comp', {
@@ -13,6 +17,7 @@ Vue.component('orders-comp', {
             list: [],
             count: 0,
             haventPlace: false,
+            haventReason: false,
             currentRoute: '',
             newOrder: newOrderData,
         }
@@ -51,6 +56,14 @@ Vue.component('orders-comp', {
          */
         changeOrderTypes: function () {
             this.newOrder.type = (this.newOrder.kind == 1) ? 1 : 3;
+        },
+
+        /**
+         * Change haven't reason status.
+         */
+        changeReasonStatus: function() {
+            this.haventReason =
+                (this.newOrder.reason_id == 505) ? true : false;
         },
 
         /**
