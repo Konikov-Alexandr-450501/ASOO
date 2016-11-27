@@ -1,3 +1,10 @@
+var newOrderData = {
+    kind: 1,
+    type: 1,
+    place_id: 1,
+    place_text: '',
+};
+
 Vue.component('orders-comp', {
     template: '#order-list',
 
@@ -7,12 +14,7 @@ Vue.component('orders-comp', {
             count: 0,
             haventPlace: false,
             currentRoute: '',
-            newOrder: {
-                kind: 1,
-                type: 1,
-                place_id: 1,
-                place_text: '',
-            }
+            newOrder: newOrderData,
         }
     },
 
@@ -25,6 +27,31 @@ Vue.component('orders-comp', {
     },
 
     methods: {
+
+        /**
+         * Create a new Order and save it to the Database.
+         */
+        createOrder: function() {
+            this.$http.post('/account/orders', this.newReference)
+                .then((data) => {
+                    // success callback
+                    this.newReference = newOrderData;
+
+                    var response = JSON.parse(data.body);
+                    console.log(response);
+                }, (data) => {
+                    // error callback
+                    var response = JSON.parse(data.body);
+                    console.log(response)
+                });
+        },
+
+        /**
+         * Change order type by kind id.
+         */
+        changeOrderTypes: function () {
+            this.newOrder.type = (this.newOrder.kind == 1) ? 1 : 3;
+        },
 
         /**
          * Change haven't place status.
@@ -49,7 +76,7 @@ Vue.component('orders-comp', {
          * @returns {boolean}
          */
         isCreatePage: function() {
-            return ("/account/orders/create" === this.currentRoute);
+            return ('/account/orders/create' === this.currentRoute);
         },
 
         /**
@@ -77,7 +104,7 @@ Vue.component('orders-comp', {
          * @param order
          */
         deleteOrder: function (order) {
-            this.$http.delete('account/orders/' + order.id)
+            this.$http.delete('/account/orders/' + order.id)
                 .then((data) => {
                     // success callback
                     var response = JSON.parse(data.body);
@@ -106,7 +133,6 @@ Vue.component('orders-comp', {
                 this.setCount(this.list.length);
             });
         },
-
 
     },
 });

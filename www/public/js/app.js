@@ -41482,6 +41482,13 @@ Vue.config.warnExpressionErrors = false;
 },{"bootstrap-sass":1,"jquery":2,"lodash":3,"vue":6,"vue-resource":5}],9:[function(require,module,exports){
 'use strict';
 
+var newOrderData = {
+    kind: 1,
+    type: 1,
+    place_id: 1,
+    place_text: ''
+};
+
 Vue.component('orders-comp', {
     template: '#order-list',
 
@@ -41491,12 +41498,7 @@ Vue.component('orders-comp', {
             count: 0,
             haventPlace: false,
             currentRoute: '',
-            newOrder: {
-                kind: 1,
-                type: 1,
-                place_id: 1,
-                place_text: ''
-            }
+            newOrder: newOrderData
         };
     },
 
@@ -41510,6 +41512,35 @@ Vue.component('orders-comp', {
 
     methods: {
 
+        /**
+         * Create a new Order and save it to the Database.
+         */
+        createOrder: function createOrder() {
+            var _this = this;
+
+            this.$http.post('/account/orders', this.newReference).then(function (data) {
+                // success callback
+                _this.newReference = newOrderData;
+
+                var response = JSON.parse(data.body);
+                console.log(response);
+            }, function (data) {
+                // error callback
+                var response = JSON.parse(data.body);
+                console.log(response);
+            });
+        },
+
+        /**
+         * Change order type by kind id.
+         */
+        changeOrderTypes: function changeOrderTypes() {
+            this.newOrder.type = this.newOrder.kind == 1 ? 1 : 3;
+        },
+
+        /**
+         * Change haven't place status.
+         */
         changePlaceStatus: function changePlaceStatus() {
             this.haventPlace = this.newOrder.place_id == 505 ? true : false;
         },
@@ -41529,7 +41560,7 @@ Vue.component('orders-comp', {
          * @returns {boolean}
          */
         isCreatePage: function isCreatePage() {
-            return "/account/orders/create" === this.currentRoute;
+            return '/account/orders/create' === this.currentRoute;
         },
 
         /**
@@ -41545,11 +41576,11 @@ Vue.component('orders-comp', {
          * Get orders from storage.
          */
         getOrders: function getOrders() {
-            var _this = this;
+            var _this2 = this;
 
             this.$http.get('/orders').then(function (orders) {
-                _this.list = orders.data;
-                _this.setCount(_this.list.length);
+                _this2.list = orders.data;
+                _this2.setCount(_this2.list.length);
             });
         },
 
@@ -41559,14 +41590,14 @@ Vue.component('orders-comp', {
          * @param order
          */
         deleteOrder: function deleteOrder(order) {
-            var _this2 = this;
+            var _this3 = this;
 
-            this.$http.delete('account/orders/' + order.id).then(function (data) {
+            this.$http.delete('/account/orders/' + order.id).then(function (data) {
                 // success callback
                 var response = JSON.parse(data.body);
                 console.log(response);
                 if (response.success) {
-                    _this2.list.$remove(order);
+                    _this3.list.$remove(order);
                     alert(response.messages[0]);
                 }
             }, function (data) {
@@ -41581,14 +41612,14 @@ Vue.component('orders-comp', {
          * Show more orders by step = 5.
          */
         showMore: function showMore() {
-            var _this3 = this;
+            var _this4 = this;
 
             var step = 5;
             var count = this.count + step;
 
             this.$http.get('/orders/' + count).then(function (orders) {
-                _this3.list = orders.data;
-                _this3.setCount(_this3.list.length);
+                _this4.list = orders.data;
+                _this4.setCount(_this4.list.length);
             });
         }
 
