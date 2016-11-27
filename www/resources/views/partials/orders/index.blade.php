@@ -14,15 +14,15 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <td v-show="list.length == 0">Haven't any orders</td>
-                    <tr v-for="order in list">
+                    <td v-if="list.length == 0">Haven't any orders</td>
+                    <tr v-else v-for="order in list">
                         @include('partials.orders.show')
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="row" style="text-align: center">
+        <div class="row" style="text-align: center" v-if="list.length != 0">
             <button class="btn btn-default" @click="showMore()" style="display: inline-block">Show More</button>
         </div>
     </div>
