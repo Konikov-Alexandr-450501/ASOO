@@ -12,23 +12,23 @@ class TypesTableSeeder extends Seeder
     public function run()
     {
         DB::table('types')->insert([
-            'name' => 'Ordinary',
+            'name'    => 'Ordinary',
             'kind_id' => 1,
         ]);
         DB::table('types')->insert([
-            'name' => 'With the official stamp',
+            'name'    => 'With the official stamp',
             'kind_id' => 1,
         ]);
         DB::table('types')->insert([
-            'name' => 'Exam',
+            'name'    => 'Exam',
             'kind_id' => 2,
         ]);
         DB::table('types')->insert([
-            'name' => 'Credit',
+            'name'    => 'Credit',
             'kind_id' => 2,
         ]);
         DB::table('types')->insert([
-            'name' => 'Course work',
+            'name'    => 'Course work',
             'kind_id' => 2,
         ]);
     }
