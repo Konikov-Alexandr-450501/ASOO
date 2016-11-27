@@ -43,6 +43,11 @@ Vue.component('orders-comp', {
 
     methods: {
 
+        /**
+         * Returns result of checking disable for the Send button.
+         *
+         * @returns {boolean}
+         */
         canDesable: function () {
             return (!this.checkbox_rules || !this.checkbox_correct_data) && !this.isSheet()
         },
