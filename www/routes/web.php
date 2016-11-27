@@ -20,7 +20,6 @@ Auth::routes();
 Route::get('/orders/{count?}', 'OrdersController@index');
 
 Route::group(['prefix' => 'account', 'middleware' => ['auth']], function () {
-
     Route::get('/', 'AccountController@index');
 
     Route::resource('orders', 'OrdersController', [

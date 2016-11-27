@@ -24,7 +24,6 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Models\Order::class, function (Faker\Generator $faker) {
-
     return [
         'description' => $faker->realText(80),
         'body'        => $faker->realText(200),

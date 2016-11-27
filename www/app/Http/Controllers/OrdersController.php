@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
 use App\Models\Kind;
-use App\Models\Type;
+use App\Models\Order;
 use App\Models\Place;
+use App\Models\Type;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +22,7 @@ class OrdersController extends Controller
      * Display a listing of the orders.
      *
      * @param Request $request
-     * @param null $count
+     * @param null    $count
      */
     public function index(Request $request, $count = null)
     {
