@@ -8,15 +8,13 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="order_teacher">Gap date: </label>
-
-        <input type="text" id="sandbox-container" class="form-control">
-
-        <select class="form-control" v-model="newOrder.teacher_id" name="order_teacher">
-            @foreach($places as $place)
-                <option :value="{{ $place->id }}">{{ $place->name }}</option>
-            @endforeach
-        </select>
+        <label for="gap_date">Gap date: </label>
+        <div class="input-group date">
+            <input class="datepicker form-control" name="gap_date" data-date-format="mm/dd/yyyy">
+            <div class="input-group-addon">
+                <i class="fa fa-th" aria-hidden="true"></i>
+            </div>
+        </div>
     </div>
     <div class="form-group">
         <label for="order_reason">Gap reason: </label>
