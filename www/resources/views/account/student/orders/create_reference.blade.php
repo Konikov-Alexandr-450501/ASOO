@@ -3,7 +3,7 @@
         <label for="order_teacher">Teacher: </label>
         <select class="form-control" v-model="newOrder.teacher_id" name="order_teacher">
             @foreach($places as $place)
-                <option value="{{ $place->id }}">{{ $place->name }}</option>
+                <option :value="{{ $place->id }}">{{ $place->name }}</option>
             @endforeach
         </select>
     </div>
@@ -11,28 +11,28 @@
         <label for="order_teacher">Gap date: </label>
         <select class="form-control" v-model="newOrder.teacher_id" name="order_teacher">
             @foreach($places as $place)
-                <option value="{{ $place->id }}">{{ $place->name }}</option>
+                <option :value="{{ $place->id }}">{{ $place->name }}</option>
             @endforeach
         </select>
     </div>
     <div class="form-group">
         <label for="order_reason">Gap reason: </label>
         <label class="radio-inline">
-            <input type="radio" value="true" name="order_reason_justifiable" v-model="newOrder.justifiable">justifiable
+            <input type="radio" :value="true" name="order_reason_justifiable" v-model="newOrder.justifiable">justifiable
         </label>
         <label class="radio-inline">
-            <input type="radio" value="false" name="order_reason_justifiable" v-model="newOrder.justifiable" checked>not justifiable
+            <input type="radio" :value="false" name="order_reason_justifiable" v-model="newOrder.justifiable" checked>not justifiable
         </label>
-        <div class="form-group" v-if="newOrder.justifiable == 'true'">
+        <div class="form-group" v-if="newOrder.justifiable">
             <div class="panel panel-primary">
                 <div class="panel-heading">Reason</div>
                 <div class="panel-body">
                     <div class="form-group">
                         <select class="form-control" v-model="newOrder.reason_id" @change="changeReasonStatus()" name="order_reason">
                             @foreach($places as $place)
-                                <option value="{{ $place->id }}">{{ $place->name }}</option>
+                                <option :value="{{ $place->id }}">{{ $place->name }}</option>
                             @endforeach
-                            <option value="505">etc</option>
+                            <option :value="505">etc</option>
                         </select>
                         <div class="form-group" v-if="haventReason">
                             <br>
