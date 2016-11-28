@@ -9,6 +9,9 @@
     </div>
     <div class="form-group">
         <label for="order_teacher">Gap date: </label>
+
+        <input type="text" id="sandbox-container" class="form-control">
+
         <select class="form-control" v-model="newOrder.teacher_id" name="order_teacher">
             @foreach($places as $place)
                 <option :value="{{ $place->id }}">{{ $place->name }}</option>
