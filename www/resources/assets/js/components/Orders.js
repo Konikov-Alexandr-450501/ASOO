@@ -16,10 +16,12 @@ Vue.component('orders-comp', {
         return {
             list: [],
             count: 0,
+            step: 5,
             haventPlace: false,
             haventReason: false,
             checkbox_rules: false,
             checkbox_correct_data: false,
+            canShowMore: false,
             currentRoute: '',
             newOrder: newOrderData,
         }
@@ -123,12 +125,22 @@ Vue.component('orders-comp', {
         },
 
         /**
+         * Handle showing ShowMore button.
+         *
+         * @param count
+         */
+        handleShowMoreBtn: function (count) {
+            this.canShowMore = (this.count < count) ? false : true;
+        },
+
+        /**
          * Get orders from storage.
          */
         getOrders: function () {
             this.$http.get('/orders').then((orders) => {
                 this.list = orders.data;
                 this.setCount(this.list.length);
+                this.handleShowMoreBtn(this.step);
             });
         },
 
@@ -159,12 +171,12 @@ Vue.component('orders-comp', {
          * Show more orders by step = 5.
          */
         showMore: function () {
-            var step = 5;
-            var count = this.count + step;
+            var count = this.count + this.step;
 
             this.$http.get('/orders/' + count).then((orders) => {
                 this.list = orders.data;
                 this.setCount(this.list.length);
+                this.handleShowMoreBtn(count);
             });
         },
 

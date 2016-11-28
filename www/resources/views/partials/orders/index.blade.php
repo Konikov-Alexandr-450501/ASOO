@@ -22,7 +22,7 @@
                 </table>
             </div>
         </div>
-        <div class="row" style="text-align: center" v-if="list.length != 0">
+        <div class="row" style="text-align: center" v-if="canShowMore">
             <button class="btn btn-default" @click="showMore()" style="display: inline-block">Show More</button>
         </div>
     </div>

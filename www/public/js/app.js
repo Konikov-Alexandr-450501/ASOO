@@ -41500,10 +41500,12 @@ Vue.component('orders-comp', {
         return {
             list: [],
             count: 0,
+            step: 5,
             haventPlace: false,
             haventReason: false,
             checkbox_rules: false,
             checkbox_correct_data: false,
+            canShowMore: false,
             currentRoute: '',
             newOrder: newOrderData
         };
@@ -41527,6 +41529,11 @@ Vue.component('orders-comp', {
 
     methods: {
 
+        /**
+         * Returns result of checking disable for the Send button.
+         *
+         * @returns {boolean}
+         */
         canDesable: function canDesable() {
             return (!this.checkbox_rules || !this.checkbox_correct_data) && !this.isSheet();
         },
@@ -41601,6 +41608,15 @@ Vue.component('orders-comp', {
         },
 
         /**
+         * Handle showing ShowMore button.
+         *
+         * @param count
+         */
+        handleShowMoreBtn: function handleShowMoreBtn(count) {
+            this.canShowMore = this.count < count ? false : true;
+        },
+
+        /**
          * Get orders from storage.
          */
         getOrders: function getOrders() {
@@ -41609,6 +41625,7 @@ Vue.component('orders-comp', {
             this.$http.get('/orders').then(function (orders) {
                 _this2.list = orders.data;
                 _this2.setCount(_this2.list.length);
+                _this2.handleShowMoreBtn(_this2.step);
             });
         },
 
@@ -41642,12 +41659,12 @@ Vue.component('orders-comp', {
         showMore: function showMore() {
             var _this4 = this;
 
-            var step = 5;
-            var count = this.count + step;
+            var count = this.count + this.step;
 
             this.$http.get('/orders/' + count).then(function (orders) {
                 _this4.list = orders.data;
                 _this4.setCount(_this4.list.length);
+                _this4.handleShowMoreBtn(count);
             });
         }
 
