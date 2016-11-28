@@ -13,14 +13,14 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+});;
 
 Auth::routes();
 
 Route::get('/orders/{count?}', 'OrdersController@index');
 
 Route::group(['prefix' => 'account', 'middleware' => ['auth']], function () {
-    Route::get('/', 'AccountController@index');
+    Route::get('/', 'AccountController@index')->name('account.index');
 
     Route::resource('orders', 'OrdersController', [
         'destroy', 'create', 'store',
