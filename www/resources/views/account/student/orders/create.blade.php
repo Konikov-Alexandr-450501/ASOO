@@ -22,12 +22,4 @@
 @endsection
 
 @section('scripts')
-    <script type="text/javascript" src="/js/bootstrap-datepicker.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('.datepicker').datepicker({
-                format: 'mm/dd/yyyy'
-            });
-        })
-    </script>
 @endsection

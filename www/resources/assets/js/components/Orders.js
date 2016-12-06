@@ -27,6 +27,16 @@ Vue.component('orders-comp', {
         }
     },
 
+    watch: {
+        kind: function(value) {
+            if(value == 2) {
+                $('.datepicker').datepicker({
+                    format: 'mm/dd/yyyy'
+                });
+            }
+        }
+    },
+
     computed: {
         sendObject: function () {
             return {
@@ -59,10 +69,10 @@ Vue.component('orders-comp', {
          */
         createOrder: function() {
             if(this.isSheet() || !this.canDesable()) {
-                this.$http.post('/account/orders', this.newReference)
+                this.$http.post('/account/orders', this.newOrder)
                     .then((data) => {
                         // success callback
-                        this.newReference = newOrderData;
+                        this.newOrder = newOrderData;
 
                         var response = JSON.parse(data.body);
                         console.log(response);
