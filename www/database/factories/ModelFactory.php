@@ -26,9 +26,9 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Models\Order::class, function (Faker\Generator $faker) {
     return [
         'description' => $faker->realText(80),
-        'body'        => $faker->realText(200),
+        'template_id' => $faker->numberBetween(1, 2),
         'status'      => $faker->numberBetween(0, 1),
-        'user_id'     => 21,
+        'user_id'     => $faker->numberBetween(1, 20),
         'kind_id'     => $faker->numberBetween(1, 2),
         'type_id'     => $faker->numberBetween(1, 5),
     ];
